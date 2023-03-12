@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('https://mpech.net/developer');
 });
 
-Route::resource('customer', \App\Http\Controllers\CustomersController::class);
