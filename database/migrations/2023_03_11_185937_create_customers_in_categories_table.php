@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('customers_in_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("customerID");
-            $table->foreign('customerID')->references('id')->on('customers')->onDelete('cascade');
-            $table->unsignedBigInteger("categoryID");
-            $table->foreign("categoryID")->references("id")->on("categories")->onDelete("cascade");
+            $table->unsignedBigInteger("customers_id");
+            $table->foreign('customers_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->unsignedBigInteger("categories_id");
+            $table->foreign("categories_id")->references("id")->on("categories")->onDelete("cascade");
             $table->timestamps();
         });
     }
