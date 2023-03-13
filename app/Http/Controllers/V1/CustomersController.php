@@ -1,14 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\CustomerCollection;
+use App\Http\Resources\V1\CustomerResource;
 use App\Models\Customers;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
-    public function index(){
-        $customers=Customers::all();
+    public function index(Request $request){
+        $includeCategory = $request->query('includeCategory');
+
+        $customers = new CustomerCollection(Customers::all());
+
+        if($includeCategory){
+             $customers = new CustomerCollection(Customers::with('categories')->get());
+        }
+
         return response()->json([
             'status' => true,
             'data' => $customers
@@ -26,13 +36,13 @@ class CustomersController extends Controller
         return response()->json([
             'status' => true,
             'message' => "New customer successfully created.",
-            'data' => $customer
+            'data' => new CustomerResource($customer)
         ], 200);
     }
     public function show(Customers $customer){
         return response()->json([
            'status' => true,
-           'data' => $customer
+           'data' => new CustomerResource($customer)
         ], 200);
     }
     public function destroy(Request $request, Customers $customer){
