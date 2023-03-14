@@ -19,6 +19,9 @@ return new class extends Migration
             $table->foreign("categories_id")->references("id")->on("categories")->onDelete("cascade");
             $table->timestamps();
         });
+        Artisan::call('db:seed', [
+            '--class' => 'CustomersInCategoriesSeeder',
+        ]);
     }
 
     /**

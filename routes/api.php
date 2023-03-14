@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::prefix('v1')->group(function() {
     Route::apiResource('customer', \App\Http\Controllers\V1\CustomersController::class);
-    Route::apiResource('customer/{id}/category', \App\Http\Controllers\V1\CustomerCategoriesController::class);
+    Route::apiResource('customer/{id}/category', \App\Http\Controllers\V1\CustomerCategoriesController::class)->where(['id'=>'[0-9]+']);
+    Route::apiResource('customer/{id}/group', \App\Http\Controllers\V1\CustomerCategoriesController::class)->where(['id'=>'[0-9]+']);
 });
 

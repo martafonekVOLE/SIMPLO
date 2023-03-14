@@ -20,7 +20,7 @@ class CustomerResource extends JsonResource
           'firstName' => $this->firstname,
           'surname' => $this->surname,
           'age' =>  $this->age,
-          'category' => CategoryResource::collection($this->whenLoaded('categories'))
+          'groups' => CategoryResourceDetail::collection($this->whenLoaded('categories'))
         ];
     }
 }

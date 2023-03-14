@@ -5,27 +5,32 @@ namespace App\Http\Controllers\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\CustomerCollection;
 use App\Http\Resources\V1\CustomerResource;
+use App\Models\Categories;
 use App\Models\Customers;
+use App\Models\CustomersInCategories;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
     public function index(Request $request){
-        $includeCategory = $request->query('includeCategory');
+        $includeGroup = $request->query('includeGroup');
 
-        $customers = new CustomerCollection(Customers::all());
+        $customer = Customers::all();
 
-        if($includeCategory){
-             $customers = new CustomerCollection(Customers::with('categories')->get());
+        if($includeGroup){
+             $customer = new CustomerCollection($customer->first()->with('categories')->get());
+        }
+        else{
+            $customer = new CustomerCollection($customer);
         }
 
         return response()->json([
             'status' => true,
-            'data' => $customers
-        ]);
+            'data' => $customer
+        ], 200);
     }
     public function store(Request $request){
-        $request->validate([
+        $validationTest = $request->validate([
             'email'=>'required',
             'firstname'=>'required',
             'surname'=>'required',

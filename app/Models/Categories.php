@@ -10,6 +10,7 @@ class Categories extends Model
 {
     use HasFactory;
 
+
     public function customers(){
         return $this->belongsToMany(Customers::class, 'customers_in_categories');
     }
