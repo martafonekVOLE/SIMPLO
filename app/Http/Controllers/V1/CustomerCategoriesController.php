@@ -41,7 +41,7 @@ class CustomerCategoriesController extends Controller
     public function store(Request $request, Customers $customer, $id)
     {
         $request->validate([
-            'categories_id' => 'required'
+            'categories_id' => 'required|integer|between:1,5'
         ]);
 
         $customer = $customer::find($id);

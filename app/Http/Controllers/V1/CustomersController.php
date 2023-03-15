@@ -31,10 +31,10 @@ class CustomersController extends Controller
     }
     public function store(Request $request){
         $validationTest = $request->validate([
-            'email'=>'required',
-            'firstname'=>'required',
-            'surname'=>'required',
-            'age'=>'nullable'
+            'email'=>'required|email',
+            'firstname'=>'required|string',
+            'surname'=>'required|string',
+            'age'=>'nullable|integer'
         ]);
 
         $customer = Customers::create($request->all());
