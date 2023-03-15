@@ -14,10 +14,11 @@ class CustomersController extends Controller
 {
     public function index(Request $request){
         $includeGroup = $request->query('includeGroup');
+        $includeCategory = $request->query('includeCategory');
 
         $customer = Customers::all();
 
-        if($includeGroup){
+        if($includeGroup||$includeCategory){
              $customer = new CustomerCollection($customer->first()->with('categories')->get());
         }
         else{
