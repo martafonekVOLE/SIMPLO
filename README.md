@@ -23,3 +23,17 @@ Author: [Martin Pech](https://mpech.net/developer)
 `127.0.0.1:8000/api/v1/customer/1/group` - groups of customer with id = 1, accepts **GET, POST**
 
 `127.0.0.1:8000/api/v1/customer/1/group/2/` - detail of group with id = 2 of customer with id = 1, accepts **PUT, PATCH, DELETE**
+
+### POST requirements
+
+`/customer` - requires email & strings
+```json 
+"email": "email",
+"firstname": "string",
+"surname": "string"
+```
+`/group` - requires integer
+```json
+"categories_id": 1
+```
+
