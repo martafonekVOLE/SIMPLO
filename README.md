@@ -6,10 +6,10 @@ Author: [Martin Pech](https://mpech.net/developer)
 1) Run `make` to build the project. Project will be ready in API directory.
 2) Run mysql and create empty database. 
 3) Edit *.env* file (DB_DATABASE, DB_USERNAME, DB_PASSWORD).
-4) Run `make database`, alternatively run `php artisan migrate:fresh`
+4) Run `make database`, alternatively run `php artisan migrate:fresh`.
 > NOTE: *This will create database tables and fill them with testing data*
-4) Run `make server`, or `php artisan serve`
-5) Start using API 
+4) Run `make server`, or `php artisan serve`.
+5) Start using API.
 
 ## Examples
 > NOTE: *Examples are shown on localhost*
