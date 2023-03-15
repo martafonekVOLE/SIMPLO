@@ -88,9 +88,8 @@ class CustomerCategoriesController extends Controller
     public function update(Request $request, $id, Customers $customer, $id2)
     {
         $request->validate([
-            'categories_id' => 'required|digits_between:1,5'
+            'categories_id' => 'required|integer|between:1,5'
         ]);
-
         $customer = $customer::find($id);
         $customerAlreadyInGroup = $customer->categories()->where('categories_id', $request->input('categories_id'))->exists();
         if($customerAlreadyInGroup){
